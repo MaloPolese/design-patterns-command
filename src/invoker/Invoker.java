@@ -1,6 +1,5 @@
-package editor;
+package invoker;
 
-import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,36 +11,38 @@ import commands.RedCommand;
 import commands.YellowCommand;
 import gui.Button;
 
-public class Editor extends JPanel {
+public class Invoker extends JPanel {
     public String clipboard;
-    private Button undoButton;
     private CommandHistory history = new CommandHistory();
+    private Button redButton;
+    private Button blueButton;
+    private Button yellowButton;
+    private Button undoButton;
 
-    public Editor() {
-        Button redButton = new Button("Red");
-        Button blueButton = new Button("Blue");
-        Button yellowButton = new Button("Yellow");
+    public Invoker() {
+        redButton = new Button("Red");
+        blueButton = new Button("Blue");
+        yellowButton = new Button("Yellow");
         undoButton = new Button("Undo");
-        undoButton.setEnabled(false);
 
-        Editor editor = this;
+        JPanel receiver = this;
 
         redButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                executeCommand(new RedCommand(editor));
+                executeCommand(new RedCommand(receiver));
             }
         });
         blueButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                executeCommand(new BlueCommand(editor));
+                executeCommand(new BlueCommand(receiver));
             }
         });
         yellowButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                executeCommand(new YellowCommand(editor));
+                executeCommand(new YellowCommand(receiver));
             }
         });
         undoButton.addActionListener(new ActionListener() {
@@ -60,7 +61,6 @@ public class Editor extends JPanel {
     private void executeCommand(Command command) {
         if (command.execute()) {
             history.push(command);
-            undoButton.setEnabled(true);
         }
     }
 
@@ -69,9 +69,6 @@ public class Editor extends JPanel {
             return;
 
         Command command = history.pop();
-        if (history.isEmpty()) {
-            undoButton.setEnabled(false);
-        }
         if (command != null) {
             command.undo();
         }

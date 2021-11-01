@@ -2,18 +2,19 @@ package commands;
 
 import java.awt.Color;
 
-import editor.Editor;
+import javax.swing.JPanel;
 
 public class YellowCommand extends Command {
 
-    public YellowCommand(Editor editor) {
-        super(editor);
+    public YellowCommand(JPanel _receiver) {
+        super(_receiver);
     }
 
     @Override
     public boolean execute() {
-        backup();
-        editor.setBackground(Color.YELLOW);
+        this.backup();
+        this.receiver.setBackground(Color.YELLOW);
         return true;
     }
+
 }
