@@ -6,14 +6,17 @@ public class CommandHistory {
     private Stack<Command> history = new Stack<>();
 
     public void push(Command c) {
-        this.history.push(c);
+        // TODO
+        throw new Error();
     }
 
     public Command pop() {
-        return this.history.pop();
+        // TODO
+        throw new Error();
     }
 
     public boolean isEmpty() {
-        return this.history.isEmpty();
+        // TODO
+        throw new Error();
     }
 }

@@ -1,7 +1,5 @@
 package commands;
 
-import java.awt.Color;
-
 import javax.swing.JPanel;
 
 public class BlueCommand extends Command {
@@ -12,8 +10,8 @@ public class BlueCommand extends Command {
 
     @Override
     public boolean execute() {
-        this.receiver.setBackground(Color.BLUE);
-        return false;
+        // TODO
+        throw new Error();
     }
 
 }
