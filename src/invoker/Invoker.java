@@ -4,16 +4,10 @@ import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import commands.BlueCommand;
-import commands.Command;
-import commands.CommandHistory;
-import commands.RedCommand;
-import commands.YellowCommand;
 import gui.Button;
 
 public class Invoker extends JPanel {
     public String clipboard;
-    private CommandHistory history = new CommandHistory();
     private Button redButton;
     private Button blueButton;
     private Button yellowButton;
@@ -30,25 +24,25 @@ public class Invoker extends JPanel {
         redButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                executeCommand(new RedCommand(receiver));
+                // TODO
             }
         });
         blueButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                executeCommand(new BlueCommand(receiver));
+                // TODO
             }
         });
         yellowButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                executeCommand(new YellowCommand(receiver));
+                // TODO
             }
         });
         undoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                undo();
+                // TODO
             }
         });
 
@@ -56,21 +50,5 @@ public class Invoker extends JPanel {
         this.add(blueButton);
         this.add(yellowButton);
         this.add(undoButton);
-    }
-
-    private void executeCommand(Command command) {
-        if (command.execute()) {
-            history.push(command);
-        }
-    }
-
-    private void undo() {
-        if (history.isEmpty())
-            return;
-
-        Command command = history.pop();
-        if (command != null) {
-            command.undo();
-        }
     }
 }
